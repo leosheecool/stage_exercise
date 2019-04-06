@@ -1,0 +1,31 @@
+{% extends 'registration/base.html' %}
+
+{%block content%}
+{%if user.is_authenticated%}
+    <nav class="nav" style="border: 2px solid gray; border-radius: 5px;">
+        <a class="nav-link active" href="{%url 'home'%}">Home</a>
+        <a class="nav-link" href="{%url 'profile'%}">Profile</a>
+        <a class="nav-link" href="{%url 'logout'%}">Logout</a>
+    </nav>
+    <h1 style="margin-top: 50px;">Homepage</h1>
+    <br>
+    <h2 style="text-align: center;">
+    Welcome {{ user.username }}!
+    </h2>
+    You're logged in.
+    <br>
+    <br>
+    <button type="button" class="btn btn-primary"><a href="{% url 'logout'%}" style="color: white;">logout</a></button>
+{%else%}
+    <nav class="nav" style="border: 2px solid gray; border-radius: 5px;">
+        <a class="nav-link active" href="{%url 'home'%}">Home</a>
+        <a class="nav-link" href="{%url 'profile'%}">Profile</a>
+        <a class="nav-link" href="{%url 'login'%}">Login</a>
+        <a class="nav-link" href="{%url 'register'%}">Register</a>
+    </nav>
+    <h1 style="margin-top: 50px;">You're not logged in :(</h3>
+    <br>
+    <button type="button" class="btn btn-primary"><a href="{% url 'login'%}" style="color: white;">Login</a></button>
+    <button type="button" class="btn btn-primary"><a href="{% url 'signup'%}" style="color: white;">Sign up</a></button>
+{%endif%}
+{% endblock %}

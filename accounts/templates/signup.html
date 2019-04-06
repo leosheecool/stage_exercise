@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title>Create an account</title>
+</head>
+<body>
+<h1 style="text-align: center">My_Website</h1>
+<div class="container-fluid">
+{%if user.is_authenticated%}
+<nav class="nav text-decoration-none" style="border: 2px solid gray; border-radius: 5px;">
+    <a class="nav-link active" href="{%url 'home'%}">Home</a>
+    <a class="nav-link" href="{%url 'profile'%}">Profile</a>
+    <a class="nav-link" href="{%url 'logout'%}">Logout</a>
+</nav>
+<div style="text-align: center;">
+    <h1 style="margin-top: 50px;">You already have an account</h1>
+    <br>
+    <p>Please <a href="{%url 'logout'%}">logout</a> before create an other account</p>
+</div>
+{%else%}
+<nav class="nav text-decoration-none" style="border: 2px solid gray; border-radius: 5px;">
+    <a class="nav-link active" href="{%url 'home'%}">Home</a>
+    <a class="nav-link" href="{%url 'profile'%}">Profile</a>
+    <a class="nav-link" href="{%url 'login'%}">Login</a>
+    <a class="nav-link" href="{%url 'register'%}">Register</a>
+</nav>
+<div class="container-fluid">
+    <h2 style="text-align: center;">Sign up</h2>
+    <form method="post" class="container">
+        <div class="form-group">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary">Sign up</button>
+        </div>
+        <p>Already have an account ? <a href="{%url 'login'%}">click here to login</a></p>
+    </form>
+</div>
+{%endif%}
+</div>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</body>
